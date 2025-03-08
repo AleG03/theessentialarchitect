@@ -10,8 +10,8 @@ const inter = Inter({
   preload: true,
   display: 'swap',
   adjustFontFallback: false,
-  // Only load the weights we use
-  weight: ['400', '500', '600', '700']
+  // Only load the weights we actually use
+  weight: ['400', '500']
 })
 
 // Optimize Playfair font loading

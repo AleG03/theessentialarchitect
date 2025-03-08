@@ -52,6 +52,8 @@ const nextConfig = {
             chunks: 'all',
             test: /[\\/]node_modules[\\/]/,
             priority: 20,
+            enforce: true,
+            reuseExistingChunk: true
           },
           // Common chunk for shared code
           common: {
@@ -62,8 +64,25 @@ const nextConfig = {
             reuseExistingChunk: true,
             enforce: true,
           },
+          // Separate chunk for large libraries
+          lib: {
+            test: /[\\/]node_modules[\\/](react|react-dom|framer-motion)[\\/]/,
+            name: 'lib',
+            chunks: 'all',
+            priority: 30,
+          },
         },
       },
+      minimize: true,
+      minimizer: [
+        '...',
+        {
+          apply: (compiler) => {
+            // This is a placeholder for Terser/other minimizers
+            // They are automatically included by Next.js
+          }
+        }
+      ]
     }
     
     return config
@@ -79,7 +98,17 @@ const nextConfig = {
       '@radix-ui/react-dialog',
       '@radix-ui/react-dropdown-menu',
       'framer-motion',
-    ]
+      '@vercel/analytics',
+      '@vercel/speed-insights'
+    ],
+    // Enable modern JavaScript features
+    swcMinify: true,
+    // Optimize fonts
+    optimizeFonts: true,
+    // Increase performance of dynamic imports
+    workerThreads: true,
+    // Enable React Server Components optimizations
+    serverComponents: true,
   },
   
   // Headers for better caching and security
