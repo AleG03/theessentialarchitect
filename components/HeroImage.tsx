@@ -1,7 +1,3 @@
-'use client'
-
-import { useEffect, useRef } from 'react'
-
 export default function HeroImage() {
   return (
     <div className="relative w-full max-w-md h-80 md:h-96">
