@@ -22,9 +22,12 @@ const nextConfig = {
   
   // Optimize images
   images: {
-    formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 750, 828, 1080, 1200],
-    imageSizes: [16, 32, 48, 64, 96, 128],
+    formats: ['image/webp'],
+    deviceSizes: [320, 384, 448],
+    imageSizes: [16, 32, 64, 96],
+    minimumCacheTTL: 31536000,
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   
   // Production optimizations
@@ -83,7 +86,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/:all*(svg|jpg|png|avif)',
+        source: '/:all*(svg|jpg|png)',
         headers: [
           {
             key: 'Cache-Control',
