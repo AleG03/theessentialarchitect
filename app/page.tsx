@@ -1,39 +1,23 @@
 "use client"
 
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { Separator } from "@/components/ui/separator"
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import { motion, useInView, useAnimation } from 'framer-motion'
 import { LanguageSwitcher } from '@/components/language-switcher'
 import { useLanguage } from '@/context/language-context'
 import { translations } from '@/data/translations'
 
+// Lazy load the animated laws section
+const AnimatedLawsSection = dynamic(() => import('@/components/AnimatedLawsSection'), {
+  loading: () => <div className="animate-pulse bg-gray-100 h-96 rounded-lg"></div>,
+  ssr: false
+})
+
 export default function Home() {
   const router = useRouter()
-  const lawsRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(lawsRef, { once: false, amount: 0.2 })
-  const controls = useAnimation()
   const { t } = useLanguage()
-
-  useEffect(() => {
-    if (isInView) {
-      controls.start('visible')
-    }
-  }, [isInView, controls])
-
-  const lawVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.2,
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    })
-  }
 
   const handleLawClick = (id: string) => {
     router.push(`/laws/${id}`)
@@ -70,34 +54,13 @@ export default function Home() {
               fill
               className="object-contain"
               priority
+              sizes="(max-width: 768px) 100vw, 400px"
             />
           </div>
         </div>
         
         {/* Laws section */}
-        <div ref={lawsRef} className="max-w-2xl mx-auto mt-16">
-          {/* Currently only showing Law 1, but code is ready for multiple laws */}
-          {Object.entries(translations.laws).map(([id, _], index) => (
-            <motion.div 
-              key={id}
-              className="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow p-6 cursor-pointer mb-8"
-              onClick={() => handleLawClick(id)}
-              variants={lawVariants}
-              initial="hidden"
-              animate={controls}
-              custom={index}
-            >
-              <div className="text-center mb-4">
-                <h2 className="text-2xl font-serif font-bold">{t('law')} {id}.</h2>
-                <Separator className="my-2 mx-auto w-3/4" />
-              </div>
-              <h3 className="text-lg font-medium text-center mb-4">{t(`laws.${id}.title`)}</h3>
-              <p className="text-sm text-gray-700">
-                {t(`laws.${id}.summary`)}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+        <AnimatedLawsSection onLawClick={handleLawClick} translations={translations} t={t} />
       </div>
     </main>
   )
