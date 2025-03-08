@@ -7,7 +7,7 @@ try {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  swcMinify: false,
+  swcMinify: true,
   poweredByHeader: false,
   reactStrictMode: true,
   eslint: {
