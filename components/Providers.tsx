@@ -1,20 +1,14 @@
 'use client'
 
-import { type ReactNode, Suspense } from "react"
+import { type ReactNode } from "react"
 import dynamic from 'next/dynamic'
 import { LanguageProvider } from "@/context/language-context"
 
 // Dynamically import non-critical providers
 const ThemeProvider = dynamic(() => import('./theme-provider').then(mod => mod.ThemeProvider))
 const Toaster = dynamic(() => import('./ui/toaster').then(mod => mod.Toaster))
-const Analytics = dynamic(() => import('@vercel/analytics/react').then(mod => mod.Analytics), {
-  ssr: false,
-  loading: () => null
-})
-const SpeedInsights = dynamic(() => import('@vercel/speed-insights/next').then(mod => mod.SpeedInsights), {
-  ssr: false,
-  loading: () => null
-})
+const Analytics = dynamic(() => import('@vercel/analytics/react').then(mod => mod.Analytics))
+const SpeedInsights = dynamic(() => import('@vercel/speed-insights/next').then(mod => mod.SpeedInsights))
 
 export default function Providers({ children }: { children: ReactNode }) {
   return (
@@ -27,10 +21,8 @@ export default function Providers({ children }: { children: ReactNode }) {
       >
         {children}
         <Toaster />
-        <Suspense fallback={null}>
-          <Analytics />
-          <SpeedInsights />
-        </Suspense>
+        <Analytics />
+        <SpeedInsights />
       </ThemeProvider>
     </LanguageProvider>
   )

@@ -42,16 +42,10 @@ export default function MainContent() {
       <div className="max-w-5xl mx-auto px-4 py-12 md:py-20">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-16">
           <div className="text-center md:text-left max-w-xl">
-            <h1 
-              className="text-5xl md:text-7xl font-serif font-bold tracking-tight text-rendering-optimizeLegibility"
-              style={{
-                contentVisibility: 'auto',
-                containIntrinsicSize: '0 500px'
-              }}
-            >
-              <span className="block !leading-tight">{t('title.the')}</span>
-              <span className="block !leading-tight">{t('title.simple')}</span>
-              <span className="block !leading-tight">{t('title.architect')}</span>
+            <h1 className="text-5xl md:text-7xl font-serif font-bold tracking-tight">
+              <span className="block">{t('title.the')}</span>
+              <span className="block">{t('title.simple')}</span>
+              <span className="block">{t('title.architect')}</span>
             </h1>
             <Separator className="my-6 h-0.5 bg-black w-full max-w-md" />
             <p className="text-xl mt-4">
