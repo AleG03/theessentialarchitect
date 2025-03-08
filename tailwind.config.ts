@@ -5,6 +5,9 @@ const config = {
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
   ],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     container: {
       center: true,
@@ -55,11 +58,42 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-inter)"],
+        sans: ["var(--font-inter)", "system-ui", "-apple-system", "sans-serif"],
+        serif: ["var(--font-playfair)", "Georgia", "serif"],
+      },
+      fontSize: {
+        // Define exact font sizes to prevent layout shift
+        sm: ['0.875rem', { lineHeight: '1.25rem' }],
+        base: ['1rem', { lineHeight: '1.5rem' }],
+        lg: ['1.125rem', { lineHeight: '1.75rem' }],
+        xl: ['1.25rem', { lineHeight: '1.75rem' }],
+        '2xl': ['1.5rem', { lineHeight: '2rem' }],
+        '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
+        '5xl': ['3rem', { lineHeight: '1.16' }],
+        '7xl': ['4.5rem', { lineHeight: '1.11' }],
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+  ],
+  // Disable unused core plugins
+  corePlugins: {
+    float: false,
+    clear: false,
+    skew: false,
+    scale: false,
+    filter: false,
+    backdropFilter: false,
+    tableLayout: false,
+    touchAction: false,
+    scrollSnapType: false,
+    scrollSnapAlign: false,
+    scrollSnapStop: false,
+    listStyleType: false,
+    listStylePosition: false,
+  }
 } satisfies Config
 
 export default config

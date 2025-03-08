@@ -3,21 +3,26 @@ import type { Metadata } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
 import "./globals.css"
 
-// Only load the minimal font subsets needed for initial render
+// Optimize Inter font loading
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   preload: true,
   display: 'swap',
-  adjustFontFallback: false // Disable additional font metrics calculation
+  adjustFontFallback: false,
+  // Only load the weights we use
+  weight: ['400', '500', '600', '700']
 })
 
+// Optimize Playfair font loading
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
   preload: true,
   display: 'swap',
-  adjustFontFallback: false
+  adjustFontFallback: false,
+  // Only load the weight we use
+  weight: ['700']
 })
 
 export const metadata: Metadata = {
@@ -41,6 +46,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link 
+          rel="preconnect" 
+          href="https://fonts.gstatic.com" 
+          crossOrigin="anonymous" 
+        />
+        <link 
           rel="preload"
           href="/rooster.svg"
           as="image"
@@ -54,7 +64,5 @@ export default function RootLayout({
     </html>
   )
 }
-
-
 
 import './globals.css'
