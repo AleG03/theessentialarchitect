@@ -33,22 +33,22 @@ export default function AnimatedLawsSection({ onLawClick, translations, t }: Ani
   }
 
   return (
-    <div ref={lawsRef} className="max-w-2xl mx-auto mt-16">
+    <div ref={lawsRef} className="max-w-2xl mx-auto mt-8 md:mt-16 px-4 md:px-0">
       {Object.entries(translations.laws).map(([id, _], index) => (
         <motion.div 
           key={id}
-          className="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow p-6 cursor-pointer mb-8"
+          className="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow p-4 md:p-6 cursor-pointer mb-6 md:mb-8"
           onClick={() => onLawClick(id)}
           variants={lawVariants}
           initial="hidden"
           animate={controls}
           custom={index}
         >
-          <div className="text-center mb-4">
-            <h2 className="text-2xl font-serif font-bold">{t('law')} {id}.</h2>
+          <div className="text-center mb-3 md:mb-4">
+            <h2 className="text-xl md:text-2xl font-serif font-bold">{t('law')} {id}.</h2>
             <Separator className="my-2 mx-auto w-3/4" />
           </div>
-          <h3 className="text-lg font-medium text-center mb-4">{t(`laws.${id}.title`)}</h3>
+          <h3 className="text-base md:text-lg font-medium text-center mb-3 md:mb-4">{t(`laws.${id}.title`)}</h3>
           <p className="text-sm text-gray-700">
             {t(`laws.${id}.summary`)}
           </p>

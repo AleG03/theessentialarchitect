@@ -35,20 +35,20 @@ export default function MainContent() {
 
   return (
     <>
-      <div className="absolute top-4 right-4 z-10">
+      <div className="absolute top-2 md:top-4 right-2 md:right-4 z-10">
         <LanguageSwitcher />
       </div>
       
       <div className="max-w-5xl mx-auto px-4 py-12 md:py-20">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-16">
           <div className="text-center md:text-left max-w-xl">
-            <h1 className="text-5xl md:text-7xl font-serif font-bold tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold tracking-tight">
               <span className="block">{t('title.the')}</span>
               <span className="block">{t('title.simple')}</span>
               <span className="block">{t('title.architect')}</span>
             </h1>
-            <Separator className="my-6 h-0.5 bg-black w-full max-w-md" />
-            <p className="text-xl mt-4">
+            <Separator className="my-4 md:my-6 h-0.5 bg-black w-full max-w-md" />
+            <p className="text-lg md:text-xl mt-3 md:mt-4">
               {t('subtitle')}
             </p>
           </div>
