@@ -2,15 +2,15 @@ export const translations = {
   title: {
     the: {
       en: "THE",
-      it: "L' ",
+      it: "L' ARCHITETTO",
     },
     simple: {
       en: "SIMPLE",
-      it: "ARCHITETTO",
+      it: "DELLA",
     },
     architect: {
       en: "ARCHITECT",
-      it: "SEMPLICE",
+      it: "SEMPLICITÀ",
     },
   },
   subtitle: {
