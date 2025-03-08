@@ -16,6 +16,8 @@
     "@radix-ui/react-toast": "1.2.4",
     "@swc/helpers": "0.5.3",
     "@tailwindcss/typography": "0.5.10",
+    "@vercel/analytics": "^1.5.0",
+    "@vercel/speed-insights": "^1.2.0",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.0",
     "critters": "0.0.20",
