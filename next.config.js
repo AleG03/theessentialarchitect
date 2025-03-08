@@ -1,25 +1,4 @@
-let userConfig = undefined
-try {
-  userConfig = await import('./v0-user-next.config')
-} catch (e) {
-  // ignore error
-}
-
-// Add bundle analyzer
-const withBundleAnalyzer = process.env.ANALYZE === 'true'
-  ? (await import('@next/bundle-analyzer')).default({ enabled: true })
-  : (config) => config
-
-// Import compression plugin if needed - for static export
-let CompressionPlugin;
-if (process.env.NODE_ENV === 'production') {
-  try {
-    const compressionModule = await import('compression-webpack-plugin');
-    CompressionPlugin = compressionModule.default;
-  } catch (e) {
-    console.warn('Could not load compression plugin');
-  }
-}
+// CommonJS fallback for systems that might not support ES modules well
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -84,14 +63,19 @@ const nextConfig = {
       },
     }
     
-    // Add compression plugin if in production and it was loaded successfully
-    if (!dev && !isServer && CompressionPlugin) {
-      config.plugins.push(
-        new CompressionPlugin({
-          test: /\.(js|css|html|svg)$/,
-          threshold: 10240,
-        })
-      );
+    // Add compression if available in production
+    if (!dev && !isServer && process.env.NODE_ENV === 'production') {
+      try {
+        const CompressionPlugin = require('compression-webpack-plugin');
+        config.plugins.push(
+          new CompressionPlugin({
+            test: /\.(js|css|html|svg)$/,
+            threshold: 10240,
+          })
+        );
+      } catch (e) {
+        console.warn('Could not load compression plugin');
+      }
     }
     
     return config
@@ -162,26 +146,12 @@ const nextConfig = {
   },
 }
 
-mergeConfig(nextConfig, userConfig)
-
-function mergeConfig(nextConfig, userConfig) {
-  if (!userConfig) {
-    return
-  }
-
-  for (const key in userConfig) {
-    if (
-      typeof nextConfig[key] === 'object' &&
-      !Array.isArray(nextConfig[key])
-    ) {
-      nextConfig[key] = {
-        ...nextConfig[key],
-        ...userConfig[key],
-      }
-    } else {
-      nextConfig[key] = userConfig[key]
-    }
-  }
-}
-
-export default withBundleAnalyzer(nextConfig)
+// Add bundle analyzer if requested
+if (process.env.ANALYZE === 'true') {
+  const withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: true
+  });
+  module.exports = withBundleAnalyzer(nextConfig);
+} else {
+  module.exports = nextConfig;
+} 
