@@ -14,7 +14,7 @@ export default function LawPage({ params }: { params: { id: string } }) {
   const { t } = useLanguage()
 
   // Check if the law exists in our translations
-  if (!translations.laws[id]) {
+  if (!(id in translations.laws)) {
     return notFound()
   }
 
