@@ -32,6 +32,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link 
+          rel="preload"
+          href="/rooster.svg"
+          as="image"
+          type="image/svg+xml"
+        />
+      </head>
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
         <ThemeProvider
           attribute="class"

@@ -8,7 +8,13 @@ import { useRouter } from 'next/navigation'
 import { useLanguage } from '@/context/language-context'
 import { translations } from '@/data/translations'
 
-// Lazy load components
+// Preload the hero image for immediate rendering
+const HeroImage = dynamic(() => import('../components/HeroImage'), {
+  loading: () => <div className="relative w-full max-w-md h-80 md:h-96 bg-gray-100 animate-pulse" />,
+  ssr: true
+})
+
+// Lazy load components that are not immediately visible
 const AnimatedLawsSection = dynamic(() => import('../components/AnimatedLawsSection'), {
   loading: () => <div className="animate-pulse bg-gray-100 h-96 rounded-lg"></div>,
   ssr: false
@@ -58,16 +64,7 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="relative w-full max-w-md h-80 md:h-96">
-            <Image 
-              src="/rooster.svg"
-              alt="Elegant sketched rooster"
-              fill
-              className="object-contain"
-              priority
-              sizes="(max-width: 768px) 100vw, 400px"
-            />
-          </div>
+          <HeroImage />
         </div>
         
         {/* Laws section */}
