@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 
 export default function HeroImage() {
   return (
-    <div className="relative w-full max-w-sm md:max-w-md h-64 md:h-80 lg:h-96">
+    <div className="relative w-full max-w-md h-80 md:h-96">
       <svg 
         xmlns="http://www.w3.org/2000/svg" 
         viewBox="0 0 400 400"
