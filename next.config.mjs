@@ -28,8 +28,6 @@ const nextConfig = {
   experimental: {
     optimizeCss: false,
     webpackBuildWorker: false,
-    forceSwcTransforms: true,
-    swcTraceProfiling: true,
     optimizePackageImports: [
       'lucide-react',
       '@radix-ui/react-dialog',
@@ -48,5 +46,26 @@ const nextConfig = {
   },
 }
 
-// Export the config directly without merging
+mergeConfig(nextConfig, userConfig)
+
+function mergeConfig(nextConfig, userConfig) {
+  if (!userConfig) {
+    return
+  }
+
+  for (const key in userConfig) {
+    if (
+      typeof nextConfig[key] === 'object' &&
+      !Array.isArray(nextConfig[key])
+    ) {
+      nextConfig[key] = {
+        ...nextConfig[key],
+        ...userConfig[key],
+      }
+    } else {
+      nextConfig[key] = userConfig[key]
+    }
+  }
+}
+
 export default nextConfig

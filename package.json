@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "next start",
-    "build": "next build"
+    "build": "NEXT_TELEMETRY_DISABLED=1 NEXT_FORCE_SWC_LOAD=1 next build"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "1.1.4",
