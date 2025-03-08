@@ -1,4 +1,4 @@
-import { useEffect, Suspense } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Separator } from "@/components/ui/separator"
 import { useLanguage } from '@/context/language-context'
@@ -12,8 +12,7 @@ const HeroImage = dynamic(() => import('./HeroImage'), {
 
 const AnimatedLawsSection = dynamic(() => import('./AnimatedLawsSection'), {
   loading: () => <div className="animate-pulse bg-gray-100 h-96 rounded-lg"></div>,
-  ssr: false,
-  suspense: true
+  ssr: false
 })
 
 const LanguageSwitcher = dynamic(() => import('./language-switcher').then(mod => mod.LanguageSwitcher), {
@@ -57,9 +56,7 @@ export default function MainContent() {
           <HeroImage />
         </div>
         
-        <Suspense fallback={<div className="animate-pulse bg-gray-100 h-96 rounded-lg"></div>}>
-          <AnimatedLawsSection onLawClick={handleLawClick} translations={translations} t={t} />
-        </Suspense>
+        <AnimatedLawsSection onLawClick={handleLawClick} translations={translations} t={t} />
       </div>
     </>
   )
