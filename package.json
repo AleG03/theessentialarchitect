@@ -1,7 +1,6 @@
 {
   "name": "the-simple-architect",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "start": "next start",
     "build": "next build"
