@@ -59,6 +59,14 @@ const nextConfig = {
             reuseExistingChunk: true,
             enforce: true,
           },
+          // Separate styles chunk
+          styles: {
+            name: 'styles',
+            test: /\.css$/,
+            chunks: 'all',
+            enforce: true,
+            priority: 30,
+          },
         },
       },
     }
@@ -70,6 +78,25 @@ const nextConfig = {
   experimental: {
     // Optimize CSS
     optimizeCss: true,
+    // Enable critical CSS inlining
+    optimizeCss: {
+      enabled: true,
+      inlineThreshold: 4096, // Inline CSS under 4kb
+      inlineFonts: false, // Don't inline fonts
+      pruneSource: true, // Remove unused CSS
+      minify: true,
+      critters: {
+        preload: 'media',
+        preloadFonts: false,
+        inlineThreshold: 0,
+        minimumExternalSize: 4096,
+        pruneSource: true,
+        mergeStylesheets: true,
+        additionalStylesheets: ['**/tailwind.css'],
+        keyframes: 'critical',
+        fonts: false,
+      },
+    },
     // Optimize package imports
     optimizePackageImports: [
       'lucide-react',
@@ -97,6 +124,16 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        // Add preload headers for critical CSS
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Link',
+            value: '</styles.css>; rel=preload; as=style',
           },
         ],
       },

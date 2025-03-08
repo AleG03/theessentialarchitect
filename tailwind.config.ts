@@ -7,6 +7,8 @@ const config = {
   ],
   future: {
     hoverOnlyWhenSupported: true,
+    respectDefaultRingColorOpacity: true,
+    disableColorOpacityUtilitiesByDefault: true,
   },
   theme: {
     container: {
@@ -93,7 +95,38 @@ const config = {
     scrollSnapStop: false,
     listStyleType: false,
     listStylePosition: false,
-  }
+    gradientColorStops: false,
+    boxDecorationBreak: false,
+    mixBlendMode: false,
+    backgroundBlendMode: false,
+    brightness: false,
+    contrast: false,
+    dropShadow: false,
+    grayscale: false,
+    hueRotate: false,
+    invert: false,
+    saturate: false,
+    sepia: false,
+    backdropBrightness: false,
+    backdropContrast: false,
+    backdropGrayscale: false,
+    backdropHueRotate: false,
+    backdropInvert: false,
+    backdropOpacity: false,
+    backdropSaturate: false,
+    backdropSepia: false,
+    isolation: false,
+    ringOffsetWidth: false,
+  },
+  // Safelist critical classes
+  safelist: [
+    'font-serif',
+    'font-sans',
+    'text-center',
+    'text-left',
+    'font-bold',
+    'tracking-tight',
+  ]
 } satisfies Config
 
 export default config
