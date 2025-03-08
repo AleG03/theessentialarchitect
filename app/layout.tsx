@@ -50,13 +50,6 @@ export default function RootLayout({
           href="https://fonts.gstatic.com" 
           crossOrigin="anonymous" 
         />
-        <link 
-          rel="preload"
-          href="/rooster.svg"
-          as="image"
-          type="image/svg+xml"
-          fetchPriority="high"
-        />
       </head>
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
         <Providers>{children}</Providers>
@@ -64,5 +57,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-import './globals.css'
