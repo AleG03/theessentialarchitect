@@ -26,8 +26,15 @@ const nextConfig = {
     ],
   },
   experimental: {
-    optimizeCss: false,
-    webpackBuildWorker: false,
+    optimizeCss: {
+      inlineFonts: false,
+      minify: true,
+      critters: {
+        preload: 'media',
+        preloadFonts: true,
+      },
+    },
+    webpackBuildWorker: true,
     optimizePackageImports: [
       'lucide-react',
       '@radix-ui/react-dialog',
