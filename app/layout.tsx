@@ -10,8 +10,8 @@ const inter = Inter({
   preload: true,
   display: 'swap',
   adjustFontFallback: false,
-  // Only load the weights we use
-  weight: ['400', '500', '600', '700']
+  // Only load the weights we actually use
+  weight: ['400', '500']
 })
 
 // Optimize Playfair font loading
@@ -49,13 +49,6 @@ export default function RootLayout({
           rel="preconnect" 
           href="https://fonts.gstatic.com" 
           crossOrigin="anonymous" 
-        />
-        <link 
-          rel="preload"
-          href="/rooster.svg"
-          as="image"
-          type="image/svg+xml"
-          fetchPriority="high"
         />
       </head>
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>

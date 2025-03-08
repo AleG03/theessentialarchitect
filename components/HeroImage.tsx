@@ -8,11 +8,9 @@ export default function HeroImage() {
         alt="Elegant sketched rooster"
         fill
         className="object-contain"
-        priority
+        priority={false}
+        loading="lazy"
         sizes="(max-width: 768px) 320px, 384px"
-        loading="eager"
-        fetchPriority="high"
-        quality={90}
         style={{
           transform: 'translateZ(0)',
           backfaceVisibility: 'hidden',
