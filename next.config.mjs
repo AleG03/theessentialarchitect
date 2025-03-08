@@ -7,6 +7,7 @@ try {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  swcMinify: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -23,13 +24,24 @@ const nextConfig = {
     ],
   },
   experimental: {
-    optimizeCss: true,
+    optimizeCss: {
+      inlineFonts: false,
+      minify: true,
+      critters: {
+        preload: 'media',
+        preloadFonts: true,
+      },
+    },
     webpackBuildWorker: true,
     optimizePackageImports: [
       'lucide-react',
       '@radix-ui/react-dialog',
       '@radix-ui/react-dropdown-menu',
+      '@radix-ui/react-label',
       '@radix-ui/react-navigation-menu',
+      '@radix-ui/react-separator',
+      '@radix-ui/react-slot',
+      '@radix-ui/react-toast'
     ],
   },
   compiler: {
