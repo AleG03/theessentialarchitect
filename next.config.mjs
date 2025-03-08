@@ -37,52 +37,35 @@ const nextConfig = {
   
   // Enable webpack optimizations
   webpack: (config, { dev, isServer }) => {
-    // Optimize bundle size
-    config.optimization = {
-      ...config.optimization,
-      moduleIds: 'deterministic',
-      splitChunks: {
-        chunks: 'all',
-        cacheGroups: {
-          default: false,
-          vendors: false,
-          // Vendor chunk for third-party modules
-          vendor: {
-            name: 'vendor',
-            chunks: 'all',
-            test: /[\\/]node_modules[\\/]/,
-            priority: 20,
-            enforce: true,
-            reuseExistingChunk: true
-          },
-          // Common chunk for shared code
-          common: {
-            name: 'common',
-            minChunks: 2,
-            chunks: 'all',
-            priority: 10,
-            reuseExistingChunk: true,
-            enforce: true,
-          },
-          // Separate chunk for large libraries
-          lib: {
-            test: /[\\/]node_modules[\\/](react|react-dom|framer-motion)[\\/]/,
-            name: 'lib',
-            chunks: 'all',
-            priority: 30,
-          },
-        },
-      },
-      minimize: true,
-      minimizer: [
-        '...',
-        {
-          apply: (compiler) => {
-            // This is a placeholder for Terser/other minimizers
-            // They are automatically included by Next.js
+    if (!dev) {
+      // Optimize bundle size in production
+      config.optimization = {
+        ...config.optimization,
+        moduleIds: 'deterministic',
+        splitChunks: {
+          chunks: 'all',
+          cacheGroups: {
+            default: false,
+            vendors: false,
+            // Vendor chunk for third-party modules
+            vendor: {
+              name: 'vendor',
+              chunks: 'all',
+              test: /[\\/]node_modules[\\/]/,
+              priority: 20
+            },
+            // Common chunk for shared code
+            common: {
+              name: 'common',
+              minChunks: 2,
+              chunks: 'all',
+              priority: 10,
+              reuseExistingChunk: true,
+              enforce: true
+            }
           }
         }
-      ]
+      }
     }
     
     return config
@@ -97,18 +80,8 @@ const nextConfig = {
       'lucide-react',
       '@radix-ui/react-dialog',
       '@radix-ui/react-dropdown-menu',
-      'framer-motion',
-      '@vercel/analytics',
-      '@vercel/speed-insights'
-    ],
-    // Enable modern JavaScript features
-    swcMinify: true,
-    // Optimize fonts
-    optimizeFonts: true,
-    // Increase performance of dynamic imports
-    workerThreads: true,
-    // Enable React Server Components optimizations
-    serverComponents: true,
+      'framer-motion'
+    ]
   },
   
   // Headers for better caching and security
