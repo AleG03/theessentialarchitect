@@ -66,13 +66,7 @@ const nextConfig = {
       '@radix-ui/react-dialog',
       '@radix-ui/react-dropdown-menu',
       'framer-motion',
-    ],
-    // Enable modern JavaScript features
-    serverActions: true,
-    // Optimize fonts
-    fontLoaders: [
-      { loader: '@next/font/google', options: { subsets: ['latin'] } }
-    ],
+    ]
   },
   
   // Headers for better caching and security

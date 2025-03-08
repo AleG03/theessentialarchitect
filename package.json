@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "scripts": {
     "start": "next start",
-    "build": "next build"
+    "build": "next build",
+    "lint": "next lint"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "1.1.4",
@@ -34,6 +35,8 @@
     "@types/node": "20.11.24",
     "@types/react": "18.2.61",
     "@types/react-dom": "18.2.19",
-    "typescript": "5.3.3"
+    "typescript": "5.3.3",
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.2.24"
   }
 }
