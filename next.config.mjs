@@ -83,7 +83,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/:all*(svg|jpg|png)',
+        source: '/:all*(svg|jpg|png|avif)',
         headers: [
           {
             key: 'Cache-Control',

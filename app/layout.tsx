@@ -52,6 +52,13 @@ export default function RootLayout({
         />
         <link 
           rel="preload"
+          href="/rooster.avif"
+          as="image"
+          type="image/avif"
+          fetchPriority="high"
+        />
+        <link 
+          rel="preload"
           href="/rooster.svg"
           as="image"
           type="image/svg+xml"
