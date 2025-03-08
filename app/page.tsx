@@ -3,21 +3,32 @@
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { Separator } from "@/components/ui/separator"
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { LanguageSwitcher } from '@/components/language-switcher'
 import { useLanguage } from '@/context/language-context'
 import { translations } from '@/data/translations'
 
-// Lazy load the animated laws section
-const AnimatedLawsSection = dynamic(() => import('@/components/AnimatedLawsSection'), {
+// Lazy load components
+const AnimatedLawsSection = dynamic(() => import('../components/AnimatedLawsSection'), {
   loading: () => <div className="animate-pulse bg-gray-100 h-96 rounded-lg"></div>,
   ssr: false
+})
+
+const LanguageSwitcher = dynamic(() => import('../components/language-switcher').then(mod => mod.LanguageSwitcher), {
+  loading: () => <div className="w-24 h-8 bg-gray-100 animate-pulse rounded" />,
+  ssr: true
 })
 
 export default function Home() {
   const router = useRouter()
   const { t } = useLanguage()
+
+  // Preload important routes
+  useEffect(() => {
+    // Preload the most accessed law pages
+    router.prefetch('/laws/1')
+    router.prefetch('/laws/2')
+  }, [router])
 
   const handleLawClick = (id: string) => {
     router.push(`/laws/${id}`)
