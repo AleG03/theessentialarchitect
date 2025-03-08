@@ -1,7 +1,7 @@
 import { type ReactNode } from "react"
 import type { Metadata } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
-import dynamic from 'next/dynamic'
+import "./globals.css"
 
 // Optimize Inter font loading
 const inter = Inter({
@@ -29,30 +29,13 @@ export const metadata: Metadata = {
   title: "The Simple Architect",
   description: "Simple laws for sustainable architectures.",
   generator: 'alegallo.dev',
-  // Adding viewport settings to prevent layout shifts
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-  },
-  // Adding additional metadata
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
-  // Cache control directives
-  other: {
-    'x-dns-prefetch-control': 'on',
-  },
 }
 
-// Move providers to a separate client component - load asynchronously
+// Move providers to a separate client component
+import dynamic from 'next/dynamic'
 const Providers = dynamic(() => import('@/components/Providers'), {
   ssr: false
 })
-
-// Import CSS with reduced priority
-import './globals.css'
 
 export default function RootLayout({
   children,
@@ -74,15 +57,6 @@ export default function RootLayout({
           type="image/svg+xml"
           fetchPriority="high"
         />
-        {/* Add preconnect for analytics */}
-        <link rel="preconnect" href="https://vercel.com" />
-        
-        {/* Critical CSS inline */}
-        <style dangerouslySetInnerHTML={{ __html: `
-          body{margin:0;font-family:sans-serif}
-          .font-sans{font-family:var(--font-inter),ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}
-          .font-serif{font-family:var(--font-playfair),ui-serif,Georgia,Cambria,"Times New Roman",Times,serif}
-        `}} />
       </head>
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
         <Providers>{children}</Providers>
@@ -90,3 +64,5 @@ export default function RootLayout({
     </html>
   )
 }
+
+import './globals.css'

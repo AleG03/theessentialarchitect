@@ -1,38 +1,16 @@
 'use client'
 
-import { type ReactNode, useEffect, useState } from "react"
+import { type ReactNode } from "react"
 import dynamic from 'next/dynamic'
 import { LanguageProvider } from "@/context/language-context"
 
-// Dynamically import non-critical providers with explicit loading settings
-const ThemeProvider = dynamic(() => import('./theme-provider').then(mod => mod.ThemeProvider), {
-  ssr: false
-})
-
-// Defer non-UI critical components
-const Toaster = dynamic(() => import('./ui/toaster').then(mod => mod.Toaster), {
-  ssr: false
-})
-
-// Load analytics only after main content is loaded
-const Analytics = dynamic(() => import('@vercel/analytics/react').then(mod => mod.Analytics), {
-  ssr: false,
-  loading: () => null
-})
-
-const SpeedInsights = dynamic(() => import('@vercel/speed-insights/next').then(mod => mod.SpeedInsights), {
-  ssr: false,
-  loading: () => null
-})
+// Dynamically import non-critical providers
+const ThemeProvider = dynamic(() => import('./theme-provider').then(mod => mod.ThemeProvider))
+const Toaster = dynamic(() => import('./ui/toaster').then(mod => mod.Toaster))
+const Analytics = dynamic(() => import('@vercel/analytics/react').then(mod => mod.Analytics))
+const SpeedInsights = dynamic(() => import('@vercel/speed-insights/next').then(mod => mod.SpeedInsights))
 
 export default function Providers({ children }: { children: ReactNode }) {
-  // Only load analytics components after hydration
-  const [isHydrated, setIsHydrated] = useState(false)
-  
-  useEffect(() => {
-    setIsHydrated(true)
-  }, [])
-  
   return (
     <LanguageProvider>
       <ThemeProvider
@@ -43,12 +21,8 @@ export default function Providers({ children }: { children: ReactNode }) {
       >
         {children}
         <Toaster />
-        {isHydrated && (
-          <>
-            <Analytics />
-            <SpeedInsights />
-          </>
-        )}
+        <Analytics />
+        <SpeedInsights />
       </ThemeProvider>
     </LanguageProvider>
   )

@@ -5,22 +5,6 @@ try {
   // ignore error
 }
 
-// Add bundle analyzer
-const withBundleAnalyzer = process.env.ANALYZE === 'true'
-  ? (await import('@next/bundle-analyzer')).default({ enabled: true })
-  : (config) => config
-
-// Import compression plugin if needed - for static export
-let CompressionPlugin;
-if (process.env.NODE_ENV === 'production') {
-  try {
-    const compressionModule = await import('compression-webpack-plugin');
-    CompressionPlugin = compressionModule.default;
-  } catch (e) {
-    console.warn('Could not load compression plugin');
-  }
-}
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Enable React strict mode for better development experience
@@ -41,10 +25,6 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200],
     imageSizes: [16, 32, 48, 64, 96, 128],
-    minimumCacheTTL: 31536000, // Cache images for 1 year
-    dangerouslyAllowSVG: true,
-    contentDispositionType: 'attachment',
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   
   // Production optimizations
@@ -69,7 +49,6 @@ const nextConfig = {
             chunks: 'all',
             test: /[\\/]node_modules[\\/]/,
             priority: 20,
-            minSize: 0,
           },
           // Common chunk for shared code
           common: {
@@ -84,16 +63,6 @@ const nextConfig = {
       },
     }
     
-    // Add compression plugin if in production and it was loaded successfully
-    if (!dev && !isServer && CompressionPlugin) {
-      config.plugins.push(
-        new CompressionPlugin({
-          test: /\.(js|css|html|svg)$/,
-          threshold: 10240,
-        })
-      );
-    }
-    
     return config
   },
   
@@ -106,16 +75,7 @@ const nextConfig = {
       'lucide-react',
       '@radix-ui/react-dialog',
       '@radix-ui/react-dropdown-menu',
-      '@radix-ui/react-accordion',
-      '@radix-ui/react-label',
-      '@radix-ui/react-navigation-menu',
-      '@radix-ui/react-separator',
-      '@radix-ui/react-slot',
-      '@radix-ui/react-toast',
       'framer-motion',
-      'class-variance-authority',
-      'clsx',
-      'tailwind-merge',
     ]
   },
   
@@ -123,7 +83,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/:all*(svg|jpg|png|jpeg|webp|avif)',
+        source: '/:all*(svg|jpg|png)',
         headers: [
           {
             key: 'Cache-Control',
@@ -133,24 +93,6 @@ const nextConfig = {
       },
       {
         source: '/fonts/:all*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/_next/static/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/_next/image/:path*',
         headers: [
           {
             key: 'Cache-Control',
@@ -184,4 +126,4 @@ function mergeConfig(nextConfig, userConfig) {
   }
 }
 
-export default withBundleAnalyzer(nextConfig)
+export default nextConfig
