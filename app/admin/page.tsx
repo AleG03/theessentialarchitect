@@ -45,7 +45,7 @@ export default function AdminPage() {
   }
 `
     // Display the code or do something with it
-    //console.log(lawCode)
+    console.log(lawCode)
     // You could add functionality here to copy to clipboard or show a modal
   }
 
