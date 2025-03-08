@@ -29,6 +29,14 @@ export const metadata: Metadata = {
   title: "The Simple Architect",
   description: "Simple laws for sustainable architectures.",
   generator: 'alegallo.dev',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
+  other: {
+    'Cache-Control': 'public, max-age=31536000, immutable'
+  }
 }
 
 // Move providers to a separate client component
