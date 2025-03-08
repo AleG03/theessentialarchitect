@@ -1,15 +1,10 @@
 import type { Config } from "tailwindcss"
 
 const config = {
-  darkMode: 'media',
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-    "*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{ts,tsx}",
   ],
-  prefix: "",
   theme: {
     container: {
       center: true,
@@ -61,13 +56,6 @@ const config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)"],
-      },
-      typography: {
-        DEFAULT: {
-          css: {
-            maxWidth: "100%",
-          },
-        },
       },
     },
   },

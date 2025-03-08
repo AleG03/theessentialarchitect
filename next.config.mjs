@@ -14,12 +14,26 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    unoptimized: false,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
   experimental: {
+    optimizeCss: true,
     webpackBuildWorker: true,
-    parallelServerBuildTraces: true,
-    parallelServerCompiles: true,
+    optimizePackageImports: [
+      'lucide-react',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-dropdown-menu',
+      '@radix-ui/react-navigation-menu',
+    ],
+  },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
   },
 }
 
