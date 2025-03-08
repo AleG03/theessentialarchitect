@@ -1,13 +1,10 @@
 import type { Config } from "tailwindcss"
 
-const config: Config = {
+const config = {
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
   ],
-  future: {
-    hoverOnlyWhenSupported: true,
-  },
   theme: {
     container: {
       center: true,
@@ -59,15 +56,11 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)"],
-        serif: ["var(--font-playfair)"],
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/typography"),
-    require("tailwindcss-animate")
-  ],
-}
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+} satisfies Config
 
 export default config
 

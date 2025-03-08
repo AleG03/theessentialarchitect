@@ -10,7 +10,6 @@ const nextConfig = {
   swcMinify: true,
   poweredByHeader: false,
   reactStrictMode: true,
-  compress: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -46,52 +45,11 @@ const nextConfig = {
       '@radix-ui/react-slot',
       '@radix-ui/react-toast'
     ],
-    optimizeServerReact: true,
-    serverMinification: true,
-    turbotrace: {
-      logLevel: 'error',
-      logDetail: true,
-    },
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production' ? {
       exclude: ['error', 'warn'],
     } : false,
-  },
-  webpack: (config, { dev, isServer }) => {
-    if (!dev && !isServer) {
-      // Enable production optimizations
-      config.optimization = {
-        ...config.optimization,
-        splitChunks: {
-          chunks: 'all',
-          minSize: 20000,
-          maxSize: 90000,
-          cacheGroups: {
-            default: false,
-            vendors: false,
-            commons: {
-              name: 'commons',
-              chunks: 'all',
-              minChunks: 2,
-              reuseExistingChunk: true,
-            },
-            lib: {
-              test: /[\\/]node_modules[\\/]/,
-              name(module) {
-                const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-                return `npm.${packageName.replace('@', '')}`;
-              },
-              priority: 10,
-              chunks: 'all',
-              minChunks: 2,
-              reuseExistingChunk: true,
-            },
-          },
-        },
-      };
-    }
-    return config;
   },
 }
 

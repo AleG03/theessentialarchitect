@@ -63,14 +63,13 @@ export default function Home() {
             </p>
           </div>
           
-          <div className="relative h-[300px] w-full max-w-md">
-            <Image
+          <div className="relative w-full max-w-md h-80 md:h-96">
+            <Image 
               src="/rooster.svg"
               alt="Elegant sketched rooster"
-              priority
               fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-contain"
+              priority
             />
           </div>
         </div>

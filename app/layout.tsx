@@ -5,8 +5,9 @@ import "./globals.css"
 import { LanguageProvider } from "@/context/language-context"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -41,10 +42,10 @@ export default function RootLayout({
           <LanguageProvider>
             {children}
             <Toaster />
-            <SpeedInsights />
-            <Analytics />
           </LanguageProvider>
         </ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
