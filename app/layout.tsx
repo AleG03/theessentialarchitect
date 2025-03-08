@@ -29,11 +29,13 @@ export const metadata: Metadata = {
   title: "The Simple Architect",
   description: "Simple laws for sustainable architectures.",
   generator: 'alegallo.dev',
+  // Add viewport meta tag
   viewport: {
     width: 'device-width',
     initialScale: 1,
     maximumScale: 1,
   },
+  // Add caching headers
   other: {
     'Cache-Control': 'public, max-age=31536000, immutable'
   }
