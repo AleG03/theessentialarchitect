@@ -4,8 +4,6 @@
     "": {
       "name": "the-simple-architect",
       "dependencies": {
-        "@next/swc-linux-x64-gnu": "14.2.24",
-        "@next/swc-linux-x64-musl": "14.2.24",
         "@radix-ui/react-dialog": "1.1.4",
         "@radix-ui/react-dropdown-menu": "2.1.4",
         "@radix-ui/react-label": "2.1.1",
@@ -14,8 +12,8 @@
         "@radix-ui/react-slot": "1.1.1",
         "@radix-ui/react-toast": "1.2.4",
         "@tailwindcss/typography": "0.5.10",
-        "@vercel/analytics": "^1.5.0",
-        "@vercel/speed-insights": "^1.2.0",
+        "@vercel/analytics": "1.5.0",
+        "@vercel/speed-insights": "1.2.0",
         "class-variance-authority": "0.7.0",
         "clsx": "2.1.0",
         "critters": "0.0.20",
@@ -70,10 +68,6 @@
     "@next/env": ["@next/env@14.2.24", "", {}, ""],
 
     "@next/swc-darwin-x64": ["@next/swc-darwin-x64@14.2.24", "", { "os": "darwin", "cpu": "x64" }, ""],
-
-    "@next/swc-linux-x64-gnu": ["@next/swc-linux-x64-gnu@14.2.24", "", { "os": "linux", "cpu": "x64" }, "sha512-vEbyadiRI7GOr94hd2AB15LFVgcJZQWu7Cdi9cWjCMeCiUsHWA0U5BkGPuoYRnTxTn0HacuMb9NeAmStfBCLoQ=="],
-
-    "@next/swc-linux-x64-musl": ["@next/swc-linux-x64-musl@14.2.24", "", { "os": "linux", "cpu": "x64" }, "sha512-df0FC9ptaYsd8nQCINCzFtDWtko8PNRTAU0/+d7hy47E0oC17tI54U/0NdGk7l/76jz1J377dvRjmt6IUdkpzQ=="],
 
     "@nodelib/fs.scandir": ["@nodelib/fs.scandir@2.1.5", "", { "dependencies": { "@nodelib/fs.stat": "2.0.5", "run-parallel": "^1.1.9" } }, ""],
 

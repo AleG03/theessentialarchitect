@@ -26,14 +26,7 @@ const nextConfig = {
     ],
   },
   experimental: {
-    optimizeCss: {
-      inlineFonts: false,
-      minify: true,
-      critters: {
-        preload: 'media',
-        preloadFonts: true,
-      },
-    },
+    optimizeCss: true,
     webpackBuildWorker: true,
     optimizePackageImports: [
       'lucide-react',
