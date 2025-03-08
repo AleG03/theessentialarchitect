@@ -8,7 +8,6 @@ import { notFound } from "next/navigation"
 import { useLanguage } from "@/context/language-context"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { translations } from "@/data/translations"
-import { ThemeSwitcher } from "@/components/theme-switcher"
 
 export default function LawPage({ params }: { params: { id: string } }) {
   const { id } = params
@@ -20,18 +19,14 @@ export default function LawPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-200">
-      {/* Language and theme switchers in the top right */}
-      <div className="absolute top-4 right-4 z-10 flex items-center space-x-2">
-        <ThemeSwitcher />
+    <main className="min-h-screen bg-white">
+      {/* Language switcher in the top right */}
+      <div className="absolute top-4 right-4 z-10">
         <LanguageSwitcher />
       </div>
 
       <div className="max-w-3xl mx-auto px-4 py-12">
-        <Link 
-          href="/" 
-          className="inline-flex items-center mb-8 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-        >
+        <Link href="/" className="inline-flex items-center mb-8 text-gray-600 hover:text-gray-900">
           <Button variant="ghost" className="gap-2">
             <ArrowLeft size={16} />
             {t("backToHome")}
@@ -39,21 +34,15 @@ export default function LawPage({ params }: { params: { id: string } }) {
         </Link>
 
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-serif font-bold dark:text-white">
+          <h2 className="text-3xl font-serif font-bold">
             {t("law")} {id}.
           </h2>
-          <Separator className="my-4 mx-auto w-1/2 dark:bg-gray-700" />
-          <h1 className="text-2xl font-medium dark:text-white">
-            {t(`laws.${id}.title`)}
-          </h1>
+          <Separator className="my-4 mx-auto w-1/2" />
+          <h1 className="text-2xl font-medium">{t(`laws.${id}.title`)}</h1>
         </div>
 
-        <div 
-          className="prose prose-lg max-w-none dark:prose-invert prose-headings:dark:text-white prose-p:dark:text-gray-300" 
-          dangerouslySetInnerHTML={{ __html: t(`laws.${id}.content`) }} 
-        />
+        <div className="prose prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: t(`laws.${id}.content`) }} />
       </div>
     </main>
   )
 }
-
