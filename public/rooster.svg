@@ -1,18 +1,8 @@
 <svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
   <style>
-    .rooster-line {
-      fill: none;
-      stroke: #000;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .comb {
-      fill: #ff6b6b;
-    }
-    .beak {
-      fill: #ffa94d;
-    }
+    .rooster-line{fill:none;stroke:#000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+    .comb{fill:#ff6b6b}
+    .beak{fill:#ffa94d}
   </style>
   
   <!-- Rooster head and comb -->
@@ -42,13 +32,5 @@
   <path class="rooster-line" d="M185,330 C190,335 195,340 200,335 C205,330 205,325 200,320" />
   <path class="rooster-line" d="M245,330 C240,335 235,340 230,335 C225,330 225,325 230,320" />
   <path class="rooster-line" d="M245,330 C250,335 255,340 260,335 C265,330 265,325 260,320" />
-  
-  <!-- Sketchy effect with light, varied strokes -->
-  <path class="rooster-line" d="M150,100 C155,95 160,90 165,95" style="opacity: 0.6; stroke-width: 1" />
-  <path class="rooster-line" d="M250,100 C255,95 260,90 265,95" style="opacity: 0.6; stroke-width: 1" />
-  <path class="rooster-line" d="M150,200 C155,195 160,190 165,195" style="opacity: 0.6; stroke-width: 1" />
-  <path class="rooster-line" d="M250,200 C255,195 260,190 265,195" style="opacity: 0.6; stroke-width: 1" />
-  <path class="rooster-line" d="M220,170 C225,175 230,180 235,175" style="opacity: 0.4; stroke-width: 0.8" />
-  <path class="rooster-line" d="M180,220 C185,225 190,230 195,225" style="opacity: 0.4; stroke-width: 0.8" />
 </svg>
 

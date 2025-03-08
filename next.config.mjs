@@ -5,6 +5,11 @@ try {
   // ignore error
 }
 
+// Add bundle analyzer
+const withBundleAnalyzer = process.env.ANALYZE === 'true'
+  ? (await import('@next/bundle-analyzer')).default({ enabled: true })
+  : (config) => config
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Enable React strict mode for better development experience
@@ -25,6 +30,10 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200],
     imageSizes: [16, 32, 48, 64, 96, 128],
+    minimumCacheTTL: 31536000, // Cache images for 1 year
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   
   // Production optimizations
@@ -49,6 +58,7 @@ const nextConfig = {
             chunks: 'all',
             test: /[\\/]node_modules[\\/]/,
             priority: 20,
+            minSize: 0,
           },
           // Common chunk for shared code
           common: {
@@ -63,6 +73,19 @@ const nextConfig = {
       },
     }
     
+    // Add compression for production builds
+    if (!dev && !isServer) {
+      const CompressionPlugin = require('compression-webpack-plugin');
+      config.plugins.push(
+        new CompressionPlugin({
+          algorithm: 'gzip',
+          test: /\.(js|css|html|svg)$/,
+          threshold: 10240,
+          minRatio: 0.8,
+        })
+      );
+    }
+    
     return config
   },
   
@@ -75,15 +98,32 @@ const nextConfig = {
       'lucide-react',
       '@radix-ui/react-dialog',
       '@radix-ui/react-dropdown-menu',
+      '@radix-ui/react-accordion',
+      '@radix-ui/react-label',
+      '@radix-ui/react-navigation-menu',
+      '@radix-ui/react-separator',
+      '@radix-ui/react-slot',
+      '@radix-ui/react-toast',
       'framer-motion',
-    ]
+      'class-variance-authority',
+      'clsx',
+      'tailwind-merge',
+    ],
+    // Enable modern browserslist target
+    browsersListForSwc: true,
+    // Enable React Server Components
+    serverComponents: true,
+    // Enable concurrent features
+    concurrentFeatures: true,
+    // Add compression
+    compress: true,
   },
   
   // Headers for better caching and security
   async headers() {
     return [
       {
-        source: '/:all*(svg|jpg|png)',
+        source: '/:all*(svg|jpg|png|jpeg|webp|avif)',
         headers: [
           {
             key: 'Cache-Control',
@@ -93,6 +133,24 @@ const nextConfig = {
       },
       {
         source: '/fonts/:all*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/_next/image/:path*',
         headers: [
           {
             key: 'Cache-Control',
@@ -126,4 +184,4 @@ function mergeConfig(nextConfig, userConfig) {
   }
 }
 
-export default nextConfig
+export default withBundleAnalyzer(nextConfig)

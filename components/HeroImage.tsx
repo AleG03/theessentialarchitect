@@ -10,11 +10,12 @@ export default function HeroImage() {
         className="object-contain"
         priority
         sizes="(max-width: 768px) 100vw, 400px"
-        loading="eager"
         fetchPriority="high"
+        loading="eager"
+        decoding="async"
         style={{
           transform: 'translateZ(0)',
-          backfaceVisibility: 'hidden',
+          willChange: 'transform',
         }}
       />
     </div>

@@ -5,19 +5,21 @@ import { useLanguage } from '@/context/language-context'
 import { translations } from '@/data/translations'
 import dynamic from 'next/dynamic'
 
+// Preload critical components
 const HeroImage = dynamic(() => import('./HeroImage'), {
-  loading: () => <div className="relative w-full max-w-md h-80 md:h-96 bg-gray-100 animate-pulse" />,
-  ssr: true
+  ssr: true,
+  loading: () => <div className="relative w-full max-w-md h-80 md:h-96 bg-gray-100 animate-pulse" />
 })
 
+// Defer non-critical components
 const AnimatedLawsSection = dynamic(() => import('./AnimatedLawsSection'), {
-  loading: () => <div className="animate-pulse bg-gray-100 h-96 rounded-lg"></div>,
-  ssr: false
+  ssr: false,
+  loading: () => <div className="animate-pulse bg-gray-100 h-96 rounded-lg"></div>
 })
 
 const LanguageSwitcher = dynamic(() => import('./language-switcher').then(mod => mod.LanguageSwitcher), {
-  loading: () => <div className="w-24 h-8 bg-gray-100 animate-pulse rounded" />,
-  ssr: true
+  ssr: true,
+  loading: () => <div className="w-24 h-8 bg-gray-100 animate-pulse rounded" />
 })
 
 export default function MainContent() {
@@ -25,8 +27,18 @@ export default function MainContent() {
   const { t } = useLanguage()
 
   useEffect(() => {
-    router.prefetch('/laws/1')
-    router.prefetch('/laws/2')
+    // Prefetch key routes once main content has loaded
+    const prefetchRoutes = () => {
+      router.prefetch('/laws/1')
+      router.prefetch('/laws/2')
+    }
+    
+    // Use requestIdleCallback if available, otherwise setTimeout
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(prefetchRoutes)
+    } else {
+      setTimeout(prefetchRoutes, 200)
+    }
   }, [router])
 
   const handleLawClick = (id: string) => {
