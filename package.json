@@ -36,6 +36,10 @@
     "@types/node": "20.11.24",
     "@types/react": "18.2.61",
     "@types/react-dom": "18.2.19",
+    "autoprefixer": "^10.4.20",
+    "css-minimizer-webpack-plugin": "^6.0.0",
+    "cssnano": "^6.1.2",
+    "postcss": "^8.5.3",
     "typescript": "5.3.3"
   }
 }
