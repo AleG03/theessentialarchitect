@@ -88,8 +88,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // Cache static image files
-        source: '/:all*(svg|jpg|png|webp|avif|gif|ico)',
+        source: '/:all*(svg|jpg|png)',
         headers: [
           {
             key: 'Cache-Control',
@@ -98,52 +97,11 @@ const nextConfig = {
         ],
       },
       {
-        // Cache font files
         source: '/fonts/:all*',
         headers: [
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        // Cache JavaScript and CSS files
-        source: '/:all*(js|css)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        // Cache static JSON data with stale-while-revalidate
-        source: '/:path*/:file*.json',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=3600, stale-while-revalidate=86400',
-          },
-        ],
-      },
-      {
-        // Cache media files
-        source: '/:all*(mp3|mp4|webm|wav)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        // Add vary header for content negotiation
-        source: '/:path*',
-        headers: [
-          {
-            key: 'Vary',
-            value: 'Accept-Encoding',
           },
         ],
       },
