@@ -1,17 +1,17 @@
 import { type ReactNode } from "react"
 import type { Metadata } from "next"
-import { Montserrat } from "next/font/google"
+import { Roboto } from "next/font/google"
 import "./globals.css"
 
-// Optimize Montserrat font loading
-const montserrat = Montserrat({
+// Optimize Roboto font loading
+const roboto = Roboto({
   subsets: ["latin"],
-  variable: "--font-montserrat",
+  variable: "--font-roboto",
   preload: true,
   display: 'swap',
   adjustFontFallback: false,
   // Only load the weights we need
-  weight: ['400', '500', '600', '700']
+  weight: ['400', '500', '700']
 })
 
 export const metadata: Metadata = {
@@ -40,7 +40,7 @@ export default function RootLayout({
           crossOrigin="anonymous" 
         />
       </head>
-      <body className={`${montserrat.variable} font-sans antialiased`}>
+      <body className={`${roboto.variable} font-sans antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>

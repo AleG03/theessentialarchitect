@@ -58,7 +58,7 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-montserrat)", "system-ui", "-apple-system", "sans-serif"],
+        sans: ["var(--font-roboto)", "system-ui", "-apple-system", "sans-serif"],
       },
       fontSize: {
         // Define exact font sizes to prevent layout shift
