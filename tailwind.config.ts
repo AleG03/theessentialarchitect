@@ -58,8 +58,7 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "-apple-system", "sans-serif"],
-        serif: ["var(--font-playfair)", "Georgia", "serif"],
+        sans: ["var(--font-montserrat)", "system-ui", "-apple-system", "sans-serif"],
       },
       fontSize: {
         // Define exact font sizes to prevent layout shift

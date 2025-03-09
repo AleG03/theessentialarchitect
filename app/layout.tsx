@@ -1,28 +1,17 @@
 import { type ReactNode } from "react"
 import type { Metadata } from "next"
-import { Inter, Playfair_Display } from "next/font/google"
+import { Montserrat } from "next/font/google"
 import "./globals.css"
 
-// Optimize Inter font loading
-const inter = Inter({
+// Optimize Montserrat font loading
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-montserrat",
   preload: true,
   display: 'swap',
   adjustFontFallback: false,
-  // Only load the weights we actually use
-  weight: ['400', '500']
-})
-
-// Optimize Playfair font loading
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-  preload: true,
-  display: 'swap',
-  adjustFontFallback: false,
-  // Only load the weight we use
-  weight: ['700']
+  // Only load the weights we need
+  weight: ['400', '500', '600', '700']
 })
 
 export const metadata: Metadata = {
@@ -51,7 +40,7 @@ export default function RootLayout({
           crossOrigin="anonymous" 
         />
       </head>
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
+      <body className={`${montserrat.variable} font-sans antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>
