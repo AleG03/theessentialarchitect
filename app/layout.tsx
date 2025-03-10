@@ -1,48 +1,30 @@
-import { type ReactNode } from "react"
-import type { Metadata } from "next"
-import { Roboto } from "next/font/google"
-import "./globals.css"
-
-// Optimize Roboto font loading
-const roboto = Roboto({
-  subsets: ["latin"],
-  variable: "--font-roboto",
-  preload: true,
-  display: 'swap',
-  adjustFontFallback: false,
-  // Only load the weights we need
-  weight: ['400', '500', '700']
-})
+import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "The Simple Architect",
   description: "Simple laws for sustainable architectures.",
-  generator: 'alegallo.dev',
-}
-
-// Move providers to a separate client component
-import dynamic from 'next/dynamic'
-const Providers = dynamic(() => import('@/components/Providers'), {
-  ssr: false
-})
+  keywords: ["architecture", "software design", "best practices", "simplicity"],
+  authors: [{ name: "The Simple Architect" }],
+  openGraph: {
+    title: "The Simple Architect",
+    description: "Simple laws for sustainable architectures.",
+    type: "website",
+  },
+};
 
 export default function RootLayout({
   children,
-}: {
-  children: ReactNode
-}) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <link 
-          rel="preconnect" 
-          href="https://fonts.gstatic.com" 
-          crossOrigin="anonymous" 
-        />
-      </head>
-      <body className={`${roboto.variable} font-sans antialiased`}>
-        <Providers>{children}</Providers>
+    <html lang="en">
+      <body>
+        <main className="min-h-screen bg-white">
+          {children}
+        </main>
       </body>
     </html>
-  )
+  );
 }

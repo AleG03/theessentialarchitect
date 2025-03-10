@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://laws.alessandrogallo.eu.org/sitemap.xml 
