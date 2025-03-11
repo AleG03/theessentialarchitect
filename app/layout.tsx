@@ -4,12 +4,18 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "The Simple Architect",
   description: "Simple laws for sustainable architectures.",
-  keywords: ["architecture", "software design", "best practices", "simplicity"],
+  keywords: ["architecture", "software design", "best practices", "simplicity", "laws", "principles"],
   authors: [{ name: "The Simple Architect" }],
-  openGraph: {
-    title: "The Simple Architect",
-    description: "Simple laws for sustainable architectures.",
-    type: "website",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 

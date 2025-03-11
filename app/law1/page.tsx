@@ -25,7 +25,7 @@ export default function Law1() {
 
         <div className="space-y-6 text-gray-700">
           <p>
-            This fundamental law of software architecture emphasizes the importance of proportionality between a tool's complexity and its purpose. When we create solutions, the effort and complexity involved in implementing them should never exceed the complexity of the problem they're meant to solve.
+            When we create solutions, the effort and complexity involved in implementing them should never exceed the complexity of the problem they're meant to solve.
           </p>
 
           <h3 className="text-2xl font-normal mt-12 mb-6">Key Principles:</h3>

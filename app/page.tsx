@@ -27,22 +27,16 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="grid gap-8 max-w-2xl mx-auto">
-        <Link href="/law1" className="block">
-          <div className="law-card text-center">
-            <div className="flex flex-col items-center">
-              <h2 className="text-xl md:text-2xl font-normal">LAW I.</h2>
-              <div className="w-1/2 h-px bg-black/10 my-4"></div>
-              <div className="space-y-3">
-                <h3 className="text-lg md:text-xl font-normal">
-                  No tool can be more complicated than the action it performs
-                </h3>
-                <p className="text-gray-600 text-base">
-                  When designing and developing a system, balance the effort to implement the tool with the complexity of the action it must execute.
-                </p>
-              </div>
-            </div>
-          </div>
+      <section className="max-w-xl mx-auto">
+        <Link href="/law1" className="block p-6 border border-black/10 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer bg-white hover:-translate-y-1 transition-transform duration-300 text-center">
+          <h2 className="text-xl md:text-2xl font-normal tracking-wide mb-3">LAW I</h2>
+          <div className="w-16 h-px bg-black/10 mx-auto my-4"></div>
+          <h3 className="text-lg md:text-xl font-normal mb-4 tracking-wide leading-relaxed max-w-md mx-auto">
+            No tool can be more complicated than the action it performs
+          </h3>
+          <p className="text-gray-600 text-sm max-w-sm mx-auto leading-relaxed">
+            When designing and developing a system, balance the effort to implement the tool with the complexity of the action it must execute.
+          </p>
         </Link>
       </section>
     </div>
