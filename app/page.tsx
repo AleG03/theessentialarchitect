@@ -8,13 +8,11 @@ export default function Home() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-12 md:gap-16 mb-12">
           <div className="flex-1 w-full md:w-auto">
             <div className="flex flex-col items-start">
-              <div className="title-container">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-wider main-title">
-                  <span className="block opacity-0 animate-fade-in [animation-delay:0ms]">THE</span>
-                  <span className="block opacity-0 animate-fade-in [animation-delay:50ms]">SIMPLE</span>
-                  <span className="block opacity-0 animate-fade-in [animation-delay:100ms]">ARCHITECT</span>
-                </h1>
-              </div>
+              <h1 aria-label="THE SIMPLE ARCHITECT" className="flex flex-col text-4xl md:text-5xl lg:text-6xl font-black tracking-wider main-title">
+                <span className="block">THE</span>
+                <span className="block">SIMPLE</span>
+                <span className="block">ARCHITECT</span>
+              </h1>
               <div className="w-[95%] h-px bg-black my-8"></div>
               <p className="text-lg md:text-xl text-gray-600">
                 Simple laws for sustainable architectures.
@@ -33,7 +31,7 @@ export default function Home() {
         <Link href="/law1" className="block">
           <div className="law-card text-center">
             <div className="flex flex-col items-center">
-              <h2 className="text-xl md:text-2xl font-normal">LAW 1.</h2>
+              <h2 className="text-xl md:text-2xl font-normal">LAW I.</h2>
               <div className="w-1/2 h-px bg-black/10 my-4"></div>
               <div className="space-y-3">
                 <h3 className="text-lg md:text-xl font-normal">
