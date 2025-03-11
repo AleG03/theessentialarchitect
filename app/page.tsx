@@ -22,7 +22,7 @@ export default function Home() {
             <div className="relative w-72 h-72 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem]">
               <img
                 src="/rooster.svg"
-                alt="The Simple Architect Logo"
+                alt="Elegant Rooster"
                 className="w-full h-full"
               />
             </div>
