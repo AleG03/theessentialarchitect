@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Rooster from "./components/Rooster";
 
 export default function NotFound() {
   return (
@@ -20,11 +21,7 @@ export default function NotFound() {
           </Link>
         </div>
         <div className="relative w-48 h-48 md:w-64 md:h-64 opacity-50">
-          <img
-            src="/rooster.svg"
-            alt="Elegant Rooster"
-            className="w-full h-full"
-          />
+          <Rooster className="w-full h-full text-black" />
         </div>
       </div>
     </div>

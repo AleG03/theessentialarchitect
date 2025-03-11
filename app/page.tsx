@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Rooster from "./components/Rooster";
 
 export default function Home() {
   return (
@@ -20,11 +21,7 @@ export default function Home() {
           </div>
           <div className="flex-1 flex justify-center md:justify-end">
             <div className="relative w-72 h-72 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem]">
-              <img
-                src="/rooster.svg"
-                alt="Elegant Rooster"
-                className="w-full h-full"
-              />
+              <Rooster className="w-full h-full text-black" />
             </div>
           </div>
         </div>
