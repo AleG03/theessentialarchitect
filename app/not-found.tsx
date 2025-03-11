@@ -11,7 +11,7 @@ export default function NotFound() {
           </h1>
           <div className="w-[95%] h-px bg-black my-8"></div>
           <p className="text-lg md:text-xl text-gray-600 mb-8">
-            The page you're looking for doesn't exist.
+            hic sunt leones.
           </p>
           <Link 
             href="/" 

@@ -22,9 +22,26 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'Georgia','Times New Roman', Times, serif;
+  font-family: Times,Times New Roman,serif;
 }
 
 .main-title {
-  letter-spacing: normal;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  will-change: transform;
+}
+
+/* Precompute the layout space for the title to prevent layout shifts */
+@media (min-width: 768px) {
+  .main-title {
+    contain-intrinsic-size: auto 3em;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-title {
+    contain-intrinsic-size: auto 4em;
+  }
 }

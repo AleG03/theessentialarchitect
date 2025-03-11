@@ -13,7 +13,7 @@ export default function Law1() {
       
       <article className="prose lg:prose-xl max-w-none">
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-black mb-8">LAW 1.</h1>
+          <h1 className="text-5xl font-black mb-8">LAW I.</h1>
           <div className="w-1/3 h-px bg-black mx-auto mb-8"></div>
           <h2 className="text-3xl font-normal mb-8">
             No tool can be more complicated than the action it performs
