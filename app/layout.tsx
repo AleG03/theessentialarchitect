@@ -11,9 +11,6 @@ export const metadata: Metadata = {
     description: "Simple laws for sustainable architectures.",
     type: "website",
   },
-  other: {
-    'darkreader-lock': 'true', // Prevent dark mode flashing
-  },
 };
 
 export default function RootLayout({
