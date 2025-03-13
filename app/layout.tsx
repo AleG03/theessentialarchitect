@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "The Simple Architect",
+  title: "The Essential Architect",
   description: "Simple laws for sustainable architectures.",
   keywords: ["architecture", "software design", "best practices", "simplicity", "laws", "principles"],
-  authors: [{ name: "The Simple Architect" }],
+  authors: [{ name: "The Essential Architect" }],
   robots: {
     index: true,
     follow: true,

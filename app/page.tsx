@@ -8,9 +8,9 @@ export default function Home() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-12 md:gap-16 mb-12">
           <div className="flex-1 w-full md:w-auto">
             <div className="flex flex-col items-start">
-              <h1 aria-label="THE SIMPLE ARCHITECT" className="flex flex-col text-4xl md:text-5xl lg:text-6xl font-black tracking-wider main-title">
+              <h1 aria-label="THE ESSENTIAL ARCHITECT" className="flex flex-col text-4xl md:text-5xl lg:text-6xl font-black tracking-wider main-title">
                 <span className="block">THE</span>
-                <span className="block">SIMPLE</span>
+                <span className="block">ESSENTIAL</span>
                 <span className="block">ARCHITECT</span>
               </h1>
               <div className="w-[95%] h-px bg-black my-8"></div>
